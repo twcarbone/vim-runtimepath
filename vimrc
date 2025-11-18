@@ -202,7 +202,7 @@ nnoremap <c-s> :w<cr>
  noremap          <leader>7         7gt
  noremap          <leader>8         8gt
  noremap          <leader>9         9gt
-nnoremap <silent> <leader>a         :call utils#toggleheader()<cr>
+nnoremap <silent> <leader>a         :call utils#altfile()<cr>
 nnoremap          <leader>b         :Buffers<cr>
 nnoremap <silent> <leader>c         :nohlsearch<cr> :.,$s/<c-r><c-w>/<c-r><c-w>/gc<c-f>bbb
 nnoremap <silent> <leader>d         :YcmCompleter GoTo<cr>

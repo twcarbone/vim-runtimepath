@@ -88,31 +88,30 @@ endfunction
 
 
 " @brief
-"   Toggle between a .cpp file and its header, and vice versa.
+"   Edit the 'alternate' file of this file.
 "
-"   1 - Look in the current directory for a .cpp or .h of the same name.
-"   2 - If 1 fails, and the file ends in .cpp , look in a child 'include' directory.
-"   3 - If 1 fails, and the file ends in .h, look in the parent directory. We may be
-"       inside of a child 'include' directory.
-"   4 - Error if 1, 2, and 3 fail.
+"   For C++ header files, this locates the associated source file. For C++ source files,
+"   this locates the associated header file.
 "
-function! utils#toggleheader()
+function! utils#altfile()
     silent write
-    let l:ext = expand("%:e")
-    let l:parent_dir = expand('%:p:.:h:h') .. '/'
-    let l:child_dir = expand('%:p:.:h') .. '/include/'
-    if l:ext == 'h'
-        let l:failed = utils#editifexists(expand('%:s?\.h?\.cpp?:p:.'))
-        if l:failed == 1
-            let l:failed = utils#editifexists(l:parent_dir .. expand('%:s?\.h?\.cpp?:t'))
-        endif
-    elseif l:ext == 'cpp'
-        let l:failed = utils#editifexists(expand('%:s?\.cpp?\.h?:p:.'))
-        if l:failed == 1
-            let l:failed = utils#editifexists(l:child_dir .. expand('%:s?\.cpp?\.h?:t'))
-        endif
+
+    if pathlib#tail() == 'h'
+        let l:alt_tail = 'cpp'
+    elseif pathlib#tail() == 'cpp'
+        let l:alt_tail = 'h'
     else
         call utils#error("Must be .h or .cpp file")
+        return
+    endif
+
+    let l:name = pathlib#name(pathlib#with_tail(l:alt_tail))
+    let l:file = pathlib#ff(l:name, pathlib#parent())
+
+    if l:file != ''
+        call pathlib#edit(l:file)
+    else
+        call utils#error($"cannot find file: {l:name}")
     endif
 endfunction
 
