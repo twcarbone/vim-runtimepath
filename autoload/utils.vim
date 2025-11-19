@@ -37,13 +37,13 @@ endfunction
 "   See https://www.reddit.com/r/vim/comments/10107hs/
 "
 function! utils#sourcevimrc()
-    if filereadable(expand("~/.vimrc")) == 0
-        call utils#error("no such file: ~/.vimrc")
+    if !pathlib#exists($MYVIMRC)
+        call utils#error($"no such file: {$MYVIMRC}")
         return 1
     endif
-    source ~/.vimrc
+    source $MYVIMRC
     redraw  " see @note
-    call utils#info("Sourcing ~/.vimrc ... OK")
+    call utils#info($"Sourcing {$MYVIMRC} ... OK")
 endfunction
 
 
