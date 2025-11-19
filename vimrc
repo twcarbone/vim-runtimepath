@@ -276,6 +276,11 @@ function! s:HandleVimResized()
 endfunction
 
 
+function! s:HandleCmdWinEnter()
+    set colorcolumn=
+endfunction
+
+
 " @brief
 "   Show the name of the active buffer in the tab.
 "
@@ -322,5 +327,5 @@ augroup END
 
 augroup __twc_cmdwin
     autocmd!
-    autocmd CmdwinEnter : set colorcolumn=
+    autocmd CmdwinEnter [:/?] call <SID>HandleCmdWinEnter()
 augroup END
