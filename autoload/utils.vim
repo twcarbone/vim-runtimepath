@@ -237,10 +237,23 @@ function! utils#incrementnumbers() range
 "'<,'>s/\%V\d\+\%V/\=submatch(0)+1/g
 endfunction
 
+
 " @brief
 "   Remove ANSI escape sequences
 "
 function! utils#rmansiseq()
     " Search by either '\e' or '\033'
     %s/\(\e\|\033\)\[.\{-}m//g
+endfunction
+
+
+" @brief
+"   Set 'b:undo_ftplugin'
+"
+function! utils#set_undo_ftplugin(commands)
+    if exists('b:undo_ftplugin')
+        let b:undo_ftplugin = a:commands .. ' | ' .. b:undo_ftplugin
+    else
+        let b:undo_ftplugin = a:commands
+    endif
 endfunction
