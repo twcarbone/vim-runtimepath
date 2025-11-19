@@ -222,6 +222,8 @@ nnoremap <silent> <leader><tab>     :bn<cr>
 inoremap <expr> <cr> search('\%#[])}]', 'n') ? '<cr><esc>O' : '<cr>'
 nnoremap <expr> *    ':%s/'.expand('<cword>').'//gn<CR>'
 
+" Plugins
+inoremap <tab> <plug>(zz-snap)
 
 
 " ========================================================================================
