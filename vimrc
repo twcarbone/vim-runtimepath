@@ -162,6 +162,8 @@ command! RmAnsiSeq call utils#rmansiseq()
 " ========================================================================================
 " 4. Mappings
 
+cnoremap <c-a> <home>
+
 tnoremap <esc> <c-w>N
 tnoremap jk    <c-w>N
 inoremap jk    <esc>
