@@ -164,6 +164,9 @@ command! RmAnsiSeq call utils#rmansiseq()
 
 cnoremap <c-a> <home>
 
+" Mimic bash <c-r> to show history from command line (: or /)
+cnoremap <silent> <expr> <c-r> <SID>History()
+
 tnoremap <esc> <c-w>N
 tnoremap jk    <c-w>N
 inoremap jk    <esc>
@@ -282,6 +285,16 @@ endfunction
 
 function! s:HandleCmdWinEnter()
     set colorcolumn=
+endfunction
+
+
+function! s:History()
+    let cmdtype = getcmdtype()
+    if cmdtype == ':'
+        return "History:\<cr>"
+    elseif cmdtype == '/'
+        return "\<c-c>:History/\<cr>"
+    endif
 endfunction
 
 
