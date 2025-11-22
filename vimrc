@@ -72,6 +72,10 @@ set wildmenu
 set wildmode=longest:full
 syntax on
 
+if !isdirectory(&directory)
+    call mkdir(&directory, 'p', 0700)
+endif
+
 
 " ========================================================================================
 " 2. Plugin settings
