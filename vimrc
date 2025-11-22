@@ -296,6 +296,20 @@ function! s:HandleCmdWinEnter()
 endfunction
 
 
+function! s:RestoreCursorPosition()
+    if &filetype =~ 'git'
+        return
+    endif
+
+    let line = line("'\"")
+    if line < 1 || line > line("$")
+        return
+    endif
+
+    exe "normal! g'\""
+endfunction
+
+
 function! s:History()
     let cmdtype = getcmdtype()
     if cmdtype == ':'
@@ -353,4 +367,10 @@ augroup END
 augroup __twc_cmdwin
     autocmd!
     autocmd CmdwinEnter [:/?] call <SID>HandleCmdWinEnter()
+augroup END
+
+
+augroup __twc_misc
+    autocmd!
+    autocmd BufReadPost * call <SID>RestoreCursorPosition()
 augroup END
