@@ -27,9 +27,9 @@ colorscheme gruber
 filetype plugin indent on
 set backspace=indent,eol,start
 set breakindent
-set cinoptions+==0  " see :h cinoption-values
-set cinoptions+=f0  " see :h cinoption-values
-set cinoptions+=g0  " see :h cinoption-values
+set cinoptions+==0
+set cinoptions+=f0
+set cinoptions+=g0
 set cmdwinheight=12
 set colorcolumn=100
 set cursorline
@@ -37,7 +37,7 @@ set directory=$HOME/vimswap//
 set display=truncate
 set expandtab
 set foldcolumn=1
-set formatoptions=cro/qj  " see :h fo-table
+set formatoptions=cro/qj
 set hidden
 set hlsearch
 set ignorecase
@@ -45,10 +45,9 @@ set incsearch
 set laststatus=2
 set linebreak
 set list
-set listchars=trail:∙,tab:→\∙  " see :h i_CTRL-V_digit (trailing:u2219, tab:u2192)
+set listchars=trail:∙,tab:→\∙
 set makeprg=make\ -j
 set nojoinspaces
-" set nrformats+=alpha
 set number
 set pastetoggle=<F2>
 set relativenumber
@@ -59,7 +58,7 @@ set smartcase
 set softtabstop=4
 set spell
 set spelloptions=camel
-" set splitbelow  " This also puts help below...
+" set splitbelow  " Disabled because this also puts help below...
 set splitright
 set statusline=\ %y%r\ %f\%m\ %4p%%\ (%l,%c)\ 0x%B\ (%b)%=%{getcwd()}
 set tabline=%!Tabline()
