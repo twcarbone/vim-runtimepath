@@ -166,7 +166,11 @@ command! RmAnsiSeq call utils#rmansiseq()
 " ========================================================================================
 " 4. Mappings
 
-cnoremap <c-a> <home>
+" Emacs-style command line bindings
+cnoremap <c-a>     <home>
+cnoremap <esc>b    <s-left>
+cnoremap <esc>f    <s-right>
+cnoremap <esc><bs> <c-w>
 
 " Mimic bash <c-r> to show history from command line (: or /)
 cnoremap <silent> <expr> <c-r> <SID>History()
