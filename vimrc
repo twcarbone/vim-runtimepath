@@ -230,7 +230,7 @@ vnoremap <silent> <leader>r         :call utils#formatrange()<cr>
 nnoremap <silent> <leader>s         :SourceVimrc<cr>
 nnoremap <silent> <leader><tab>     :bn<cr>
 
-inoremap <expr> <cr> search('\%#[])}]', 'n') ? '<cr><esc>O' : '<cr>'
+imap     <expr> <cr> search('\%#[])}]', 'n') ? '<cr><esc>O' : '<cr>'
 nnoremap <expr> *    ':%s/'.expand('<cword>').'//gn<CR>'
 
 " Plugins
