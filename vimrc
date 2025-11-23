@@ -1,7 +1,7 @@
 " ========================================================================================
 " Contents
 "
-"   1.  Options
+"   1.  Options and builtin settings
 "   2.  Plugin settings
 "   3.  Commands
 "   4.  Mappings
@@ -10,7 +10,7 @@
 "
 
 " ========================================================================================
-" 1. Options
+" 1. Options and builtin settings
 
 " see
 "   :h xterm-true-color
@@ -78,6 +78,10 @@ syntax on
 if !isdirectory(&directory)
     call mkdir(&directory, 'p', 0700)
 endif
+
+let g:netrw_sizestyle = 'H'
+let g:netrw_liststyle = 1
+let g:netrw_sort_sequence = '[\/]\s'
 
 
 " ========================================================================================
