@@ -237,11 +237,11 @@ vnoremap <silent> <leader>r         :call utils#formatrange()<cr>
 nnoremap <silent> <leader>s         :SourceVimrc<cr>
 nnoremap <silent> <leader><tab>     :bn<cr>
 
-imap     <expr> <cr> search('\%#[])}]', 'n') ? '<cr><esc>O' : '<cr>'
-nnoremap <expr> *    ':%s/'.expand('<cword>').'//gn<CR>'
-
-" Plugins
-inoremap <tab> <plug>(zz-snap)
+" Other
+    imap <expr>   <cr>              search('\%#[])}]', 'n') ? '<cr><esc>O' : '<cr>'
+inoremap          <tab>             <plug>(zz-snap)
+nnoremap <expr>   *                 ':%s/'.expand('<cword>').'//gn<CR>'
+nnoremap <silent> -                 :call pathlib#edit(pathlib#parent())<cr>
 
 
 " ========================================================================================
