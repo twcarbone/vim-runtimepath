@@ -154,12 +154,11 @@ command! -range -bar FormatRange
 " :Rg
 "           Alternate vim-fzf :Rg command to not match filenames.
 "
-"           (credit: https://stackoverflow.com/a/62745519)
+"           (inspired by: https://stackoverflow.com/a/62745519)
 command! -bang -nargs=* Rg
     \ call fzf#vim#grep(
-    \     "rg --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>),
-    \     1,
-    \     fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}),
+    \     "rg --line-number --no-heading --color=always --smart-case -- " .. fzf#shellescape(<q-args>),
+    \     fzf#vim#with_preview({'options': '--delimiter=: --nth=3..'}),
     \     <bang>0
     \ )
 
