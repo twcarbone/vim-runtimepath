@@ -58,7 +58,6 @@ set smartcase
 set softtabstop=4
 set spell
 set spelloptions=camel
-" set splitbelow  " Disabled because this also puts help below...
 set splitright
 set statusline=\ %y%r\ %f\%m\ %4p%%\ (%l,%c)\ 0x%B\ (%b)%=%{getcwd()}
 set tabline=%!Tabline()
