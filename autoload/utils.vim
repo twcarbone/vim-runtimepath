@@ -248,6 +248,14 @@ endfunction
 
 
 " @brief
+"   Remove all trailing whitespace
+"
+function! utils#kill_trailing_whitespace()
+    %s/\s\+$//ge
+endfunction
+
+
+" @brief
 "   Set 'b:undo_ftplugin'
 "
 function! utils#set_undo_ftplugin(commands)
