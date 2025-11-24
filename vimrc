@@ -37,7 +37,10 @@ set directory=$HOME/vimswap//
 set display=truncate
 set expandtab
 set foldcolumn=1
-set formatoptions=cro/qj
+set formatoptions=croqj
+if has('patch-8.2.4907')
+    set formatoptions+=/
+endif
 set hidden
 set hlsearch
 set ignorecase
@@ -57,7 +60,9 @@ set showcmd
 set smartcase
 set softtabstop=4
 set spell
-set spelloptions=camel
+if has('patch-8.2.0953')
+    set spelloptions=camel
+endif
 set splitright
 set statusline=\ %y%r\ %f\%m\ %4p%%\ (%l,%c)\ 0x%B\ (%b)%=%{getcwd()}
 set tabline=%!Tabline()
