@@ -1,0 +1,27 @@
+[submodule "pack/thirdparty/start/vim-closetag"]
+	path = pack/thirdparty/start/vim-closetag
+	url = git@github.com:alvan/vim-closetag.git
+[submodule "pack/thirdparty/start/vim-commentary"]
+	path = pack/thirdparty/start/vim-commentary
+	url = git@github.com:tpope/vim-commentary.git
+[submodule "pack/thirdparty/start/vim-gitgutter"]
+	path = pack/thirdparty/start/vim-gitgutter
+	url = git@github.com:airblade/vim-gitgutter.git
+[submodule "pack/thirdparty/start/vim-ycm"]
+	path = pack/thirdparty/start/vim-ycm
+	url = git@github.com:ycm-core/YouCompleteMe.git
+[submodule "pack/thirdparty/start/vim-fzf"]
+	path = pack/thirdparty/start/vim-fzf
+	url = git@github.com:junegunn/fzf.vim.git
+[submodule "pack/thirdparty/opt/vim-dracula"]
+	path = pack/thirdparty/opt/vim-dracula
+	url = git@github.com:dracula/vim.git
+[submodule "pack/twcarbone/start/vim-pathlib"]
+	path = pack/twcarbone/start/vim-pathlib
+	url = git@github.com:twcarbone/vim-pathlib.git
+[submodule "pack/twcarbone/start/vim-zz"]
+	path = pack/twcarbone/start/vim-zz
+	url = git@github.com:twcarbone/vim-zz.git
+[submodule "pack/thirdparty/start/vim-endwise"]
+	path = pack/thirdparty/start/vim-endwise
+	url = git@github.com:tpope/vim-endwise.git
