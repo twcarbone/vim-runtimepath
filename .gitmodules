@@ -1,3 +1,6 @@
 [submodule "pack/thirdparty/start/vim-closetag"]
 	path = pack/thirdparty/start/vim-closetag
 	url = git@github.com:alvan/vim-closetag.git
+[submodule "pack/thirdparty/start/vim-commentary"]
+	path = pack/thirdparty/start/vim-commentary
+	url = git@github.com:tpope/vim-commentary.git
