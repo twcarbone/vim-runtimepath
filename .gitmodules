@@ -4,3 +4,6 @@
 [submodule "pack/thirdparty/start/vim-commentary"]
 	path = pack/thirdparty/start/vim-commentary
 	url = git@github.com:tpope/vim-commentary.git
+[submodule "pack/thirdparty/start/vim-gitgutter"]
+	path = pack/thirdparty/start/vim-gitgutter
+	url = git@github.com:airblade/vim-gitgutter.git
