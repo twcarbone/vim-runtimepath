@@ -13,3 +13,6 @@
 [submodule "pack/thirdparty/start/vim-fzf"]
 	path = pack/thirdparty/start/vim-fzf
 	url = git@github.com:junegunn/fzf.vim.git
+[submodule "pack/thirdparty/opt/vim-dracula"]
+	path = pack/thirdparty/opt/vim-dracula
+	url = git@github.com:dracula/vim.git
