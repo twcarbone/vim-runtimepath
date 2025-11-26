@@ -19,3 +19,6 @@
 [submodule "pack/twcarbone/start/vim-pathlib"]
 	path = pack/twcarbone/start/vim-pathlib
 	url = git@github.com:twcarbone/vim-pathlib.git
+[submodule "pack/twcarbone/start/vim-zz"]
+	path = pack/twcarbone/start/vim-zz
+	url = git@github.com:twcarbone/vim-zz.git
