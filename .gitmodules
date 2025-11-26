@@ -16,3 +16,6 @@
 [submodule "pack/thirdparty/opt/vim-dracula"]
 	path = pack/thirdparty/opt/vim-dracula
 	url = git@github.com:dracula/vim.git
+[submodule "pack/twcarbone/start/vim-pathlib"]
+	path = pack/twcarbone/start/vim-pathlib
+	url = git@github.com:twcarbone/vim-pathlib.git
