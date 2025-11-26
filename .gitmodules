@@ -10,3 +10,6 @@
 [submodule "pack/thirdparty/start/vim-ycm"]
 	path = pack/thirdparty/start/vim-ycm
 	url = git@github.com:ycm-core/YouCompleteMe.git
+[submodule "pack/thirdparty/start/vim-fzf"]
+	path = pack/thirdparty/start/vim-fzf
+	url = git@github.com:junegunn/fzf.vim.git
