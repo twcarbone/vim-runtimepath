@@ -1,0 +1,28 @@
+Section 1 - Format an indented paragraph
+
+    Selecting this entire paragraph in VISUAL mode and typing 'gq' should not affect its
+    indentation. Same thing with typing 'gwip' in NORMAL mode with the cursor anywhere in
+    the paragraph.
+
+Section 2 - Format an indented list that breaks across lines:
+
+    -   Same as above, selecting all of these bullets and hitting 'gq' should not do
+        anything at all
+    -   All of them should stay the same
+    -   Even this one
+
+Section 3 - Bulleted lists
+
+    -   Cursor anywhere. Type 'o'. Cursor should be at col 5 of next line.
+    *   Cursor anywhere. Type '<Enter>'. Cursor should be at col 9 of next line.
+    >   Cursor at end of line. Starting typing. Text should wrap to col 9 with no >.
+    +   '+' is not a comment leader. <Enter> and typing should both wrap to col 5.
+
+Section 4 - Numbered lists
+
+    Same behavior as Section 3
+
+    1.  Cursor at end of line. Type 'o'. Cursor should be at col 5 of next line.
+    2.  Cursor at end of line. Type '<Enter>'. Cursor, sadly, doesn't go to column 9. But
+    selecting this text and hitting 'gq' fixes it (same with 'gwip').
+    3.  Cursor at end of line. Starting typing. Text should wrap to col 9 with no number.
