@@ -122,7 +122,6 @@ let g:closetag_filetypes = 'html,xhtml,phtml,js,jsx,ts,tsx,xml'
 " vim-commentary
 
 " vim-fzf
-set runtimepath+=~/.fzf
 let g:fzf_vim = {}
 let g:fzf_vim.preview_window = ['right,50%', 'ctrl-/']
 let g:fzf_layout = { 'down': '50%' }
