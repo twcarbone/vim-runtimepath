@@ -6,7 +6,8 @@ _THIS_IS_ANOTHER_CONST = "b"
 
 assert True != False
 
-a = f"test {a for a in [1, 2, 3]}"
+a = f"test {[a for a in [1, 2, 3]]}"
+
 
 class Foo:
     """
@@ -30,7 +31,7 @@ class Foo:
 
 
 class Foo(Bar):
-    
+
     def __init__(self, c, d):
         super().__init__(a=1, b=2)
         self.c = c
