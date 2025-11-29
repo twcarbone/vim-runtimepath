@@ -50,17 +50,12 @@ endfunction
 " @brief
 "   Format a range according to the buffer file type.
 "
-" @detail
-"   Supported file types:
-"       h, c, cpp
-"       csv
-"       python
-"
 " @bug
 "   Formatting buffer with range does not respect contextual indentation
 "   https://github.com/twcarbone/dot_files/issues/5
 "
 function! utils#formatrange() range
+    let l:err = 0
     silent write
     if &filetype ==# "c" || &filetype ==# "cpp"
         silent execute a:firstline ',' a:lastline '!clang-format'
@@ -76,13 +71,27 @@ function! utils#formatrange() range
         silent execute a:firstline ',' a:lastline '!xmllint --format -'
     elseif &filetype ==# "html"
         silent execute a:firstline ',' a:lastline '!tidy -q'
-        " Remove <meta ...> that is added in by tidy
-        silent execute 'global /HTML Tidy/ normal dd'
+
+        if v:shell_error != 0
+            let l:err = 1
+        else
+            " Remove <meta ...> that is added in by tidy
+            silent execute 'global /HTML Tidy/ normal dd'
+            " Add blank line above certain elements
+            silent execute 'global /^<h1\|^<h2\|^<p>\|^<div/ normal O'
+        endif
     else
         call utils#error("formatrange: filetype not supported: " .. &filetype)
         return
     endif
-    call utils#info("formatrange: formatting ... OK")
+
+    if l:err == 1
+        normal u
+        call utils#error("formatrange: formatting ... Error")
+    else
+        call utils#info("formatrange: formatting ... OK")
+    endif
+
     silent write
 endfunction
 
