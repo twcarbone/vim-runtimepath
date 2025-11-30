@@ -18,3 +18,6 @@ fzf: thirdparty
 	git clone git@github.com:junegunn/fzf.git $$HOME/devl/thirdparty/fzf
 	$$HOME/devl/thirdparty/fzf/install --key-bindings --completion --no-update-rc
 	ln -s $$HOME/devl/thirdparty/fzf/plugin/fzf.vim plugin/fzf.vim
+
+test:
+	@cd testdir && $(MAKE) --no-print-directory
