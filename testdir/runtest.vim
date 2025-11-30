@@ -1,6 +1,3 @@
-" Must be run from test/ directory
-source ../autoload/pathlib.vim
-
 function! RunTheTest(test)
     if exists("*SetUp")
         call SetUp()
@@ -34,9 +31,9 @@ function FinishTesting()
         write
     endif
 
-    " Write errors to 'test.log'
+    " Write errors to 'errors'
     if len(s:errors) > 0
-        split test.log
+        split errors
         call append(line('$'), '')
         call append(line('$'), 'From ' . g:testname . ':')
         call append(line('$'), s:errors)
