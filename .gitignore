@@ -1,3 +1,6 @@
 .netrwhist
 plugin/fzf.vim
 spell/
+testdir/*.res
+testdir/errors
+testdir/messages
