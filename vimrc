@@ -63,6 +63,7 @@ set spell
 if has('patch-8.2.0953')
     set spelloptions=camel
 endif
+set splitbelow
 set splitright
 set statusline=\ %y%r\ %f\%m\ %4p%%\ (%l,%c)\ 0x%B\ (%b)%=%{getcwd()}
 set tabline=%!Tabline()
