@@ -45,6 +45,7 @@ set hidden
 set hlsearch
 set ignorecase
 set incsearch
+set keywordprg=:Man
 set laststatus=2
 set linebreak
 set list
