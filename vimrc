@@ -45,6 +45,7 @@ set hidden
 set hlsearch
 set ignorecase
 set incsearch
+set keywordprg=:Man
 set laststatus=2
 set linebreak
 set list
@@ -128,6 +129,11 @@ let g:fzf_vim.preview_window = ['right,50%', 'ctrl-/']
 let g:fzf_layout = { 'down': '50%' }
 
 " vim-gitgutter
+
+" vim-pydoc
+let g:pydoc_cmd = 'python3 -m pydoc'
+let g:pydoc_highlight = 0
+let g:pydoc_window_lines = 0.5
 
 
 " ========================================================================================

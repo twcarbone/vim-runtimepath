@@ -25,3 +25,6 @@
 [submodule "pack/thirdparty/start/vim-endwise"]
 	path = pack/thirdparty/start/vim-endwise
 	url = git@github.com:tpope/vim-endwise.git
+[submodule "pack/thirdparty/start/vim-pydoc"]
+	path = pack/thirdparty/start/vim-pydoc
+	url = git@github.com:fs111/pydoc.vim
