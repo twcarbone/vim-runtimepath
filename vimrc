@@ -144,17 +144,16 @@ let g:pydoc_window_lines = 0.5
 command! -nargs=? -complete=help H :enew | :set buftype=help | :h <args>
 
 " :FormatRange
-"           This command is a thin wrapper around FormatRange() to allow the cursor
-"           to return to the original position. Without this, FormatRange, which
-"           accepts a range, puts the cursor at the beginning of the range after
-"           completing. When the range is the entire buffer, this means jumping to
-"           line 1... sigh.
+"           This command is a thin wrapper around FormatRange() to allow the cursor and
+"           viewport to return to the original position. Without this, FormatRange puts
+"           the cursor at the beginning of the range after completing. When the range is
+"           the entire buffer, this means jumping to line 1... sigh.
 "
-"           (credit: https://stackoverflow.com/a/73002057)
+"           (inspired by: https://stackoverflow.com/a/73002057)
 command! -range -bar FormatRange
-    \ let s:pos = getcurpos() |
+    \ let s:view = winsaveview() |
     \ <line1>,<line2>call utils#formatrange() |
-    \ call setpos('.', s:pos)
+    \ call winrestview({'lnum': s:view.lnum, 'col': s:view.col, 'topline': s:view.topline})
 
 " :Rg
 "           Alternate vim-fzf :Rg command to not match filenames.
