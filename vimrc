@@ -27,7 +27,6 @@ colorscheme gruber
 filetype plugin indent on
 set backspace=indent,eol,start
 set breakindent
-set cinoptions+==0
 set cinoptions+=f0
 set cinoptions+=g0
 set cmdwinheight=12
