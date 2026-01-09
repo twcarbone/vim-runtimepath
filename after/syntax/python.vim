@@ -17,5 +17,5 @@ syn match pythonAddlOperator "\v[\=\+\*\-\/\\\|\!]"
 
 syn match pythonParen "\v[\(\)\{\}\[\]]"
 
-
-
+hi link pythonBuiltinConst      Boolean
+hi link pythonSelf              Statement
