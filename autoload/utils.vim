@@ -114,13 +114,20 @@ function! utils#altfile()
         return
     endif
 
-    let l:name = pathlib#name(pathlib#with_tail(l:alt_tail))
-    let l:file = pathlib#ff(l:name, pathlib#parent())
+    let l:alt_name = pathlib#name(pathlib#with_tail(l:alt_tail))
+
+    let l:gitdir = pathlib#fd_u(".git", pathlib#parent())
+
+    if l:gitdir != ""
+        let l:file = pathlib#ff_d(l:alt_name, pathlib#parent(l:gitdir), 10)
+    else
+        let l:file = pathlib#ff(l:alt_name, pathlib#parent())
+    endif
 
     if l:file != ''
         call pathlib#edit(l:file)
     else
-        call utils#error($"cannot find file: {l:name}")
+        call utils#error($"cannot find file: {l:alt_name}")
     endif
 endfunction
 
