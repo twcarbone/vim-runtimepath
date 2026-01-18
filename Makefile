@@ -6,6 +6,10 @@ install:
 	git submodule update --init --recursive
 	$(MAKE) ycm
 	$(MAKE) fzf
+	$(MAKE) docs
+
+docs:
+	find pack/*/*/*/doc -type d -name doc -exec vim --clean -c "helptags {}" -c "q" \;
 
 ycm:
 	python3 pack/thirdparty/start/vim-ycm/install.py --clangd-completer
