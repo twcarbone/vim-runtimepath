@@ -78,6 +78,7 @@ set virtualedit=block
 set wildignorecase
 set wildmenu
 set wildmode=longest:full
+set wildoptions=pum
 syntax on
 
 if !isdirectory(&directory)
