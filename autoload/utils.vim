@@ -105,30 +105,37 @@ endfunction
 function! utils#altfile()
     silent write
 
-    if pathlib#tail() == 'h'
-        let l:alt_tail = 'cpp'
-    elseif pathlib#tail() == 'cpp'
-        let l:alt_tail = 'h'
-    else
-        call utils#error("Must be .h or .cpp file")
-        return
-    endif
+    let l:altfile_tails = {'c': 'h', 'cpp': ['h', 'hpp'], 'h': ['c', 'cpp'], 'hpp': ['cpp']}
 
-    let l:alt_name = pathlib#name(pathlib#with_tail(l:alt_tail))
+    try
+        let l:alt_tails = l:altfile_tails[pathlib#tail()]
+    catch /^Vim\%((\a\+)\)\=:E716:/
+        call utils#error("File tail must be one of: " .. join(keys(l:altfile_tails), ', '))
+        return
+    endtry
 
     let l:gitdir = pathlib#fd_u(".git", pathlib#parent())
 
-    if l:gitdir != ""
-        let l:file = pathlib#ff_d(l:alt_name, pathlib#parent(l:gitdir), 10)
-    else
-        let l:file = pathlib#ff(l:alt_name, pathlib#parent())
+    for l:alt_tail in l:alt_tails
+        let l:alt_name = pathlib#name(pathlib#with_tail(l:alt_tail))
+
+        if l:gitdir != ""
+            let l:file = pathlib#ff_d(l:alt_name, pathlib#parent(l:gitdir), 10)
+        else
+            let l:file = pathlib#ff(l:alt_name, pathlib#parent())
+        endif
+
+        if l:file != ''
+            break
+        endif
+    endfor
+
+    if l:file == ''
+        call utils#error("Cannot find alternate file")
+        return
     endif
 
-    if l:file != ''
-        call pathlib#edit(l:file)
-    else
-        call utils#error($"cannot find file: {l:alt_name}")
-    endif
+    call pathlib#edit(l:file)
 endfunction
 
 
