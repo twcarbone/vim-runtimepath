@@ -131,7 +131,7 @@ function! utils#altfile()
     endfor
 
     if l:file == ''
-        call utils#error($"cannot find alternate file")
+        call utils#error("Cannot find alternate file")
         return
     endif
 
