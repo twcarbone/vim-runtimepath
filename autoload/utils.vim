@@ -105,14 +105,14 @@ endfunction
 function! utils#altfile()
     silent write
 
-    if pathlib#tail() =~# '^h\(pp\)\?$'
-        let l:alt_tails = ['cpp']
-    elseif pathlib#tail() == 'cpp'
-        let l:alt_tails = ['h', 'hpp']
-    else
-        call utils#error("File type must be one of [h, hpp, cpp]")
+    let l:altfile_tails = {'cpp': ['h', 'hpp'], 'h': ['cpp'], 'hpp': ['cpp']}
+
+    try
+        let l:alt_tails = l:altfile_tails[pathlib#tail()]
+    catch /^Vim\%((\a\+)\)\=:E716:/
+        call utils#error("File tail must be one of: " .. join(keys(l:altfile_tails), ', '))
         return
-    endif
+    endtry
 
     let l:gitdir = pathlib#fd_u(".git", pathlib#parent())
 
