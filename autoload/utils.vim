@@ -105,12 +105,12 @@ endfunction
 function! utils#altfile()
     silent write
 
-    if pathlib#tail() == 'h'
+    if pathlib#tail() =~# '^h\(pp\)\?$'
         let l:alt_tail = 'cpp'
     elseif pathlib#tail() == 'cpp'
         let l:alt_tail = 'h'
     else
-        call utils#error("Must be .h or .cpp file")
+        call utils#error("File type must be one of [h, hpp, cpp]")
         return
     endif
 
@@ -127,7 +127,7 @@ function! utils#altfile()
     if l:file != ''
         call pathlib#edit(l:file)
     else
-        call utils#error($"cannot find file: {l:alt_name}")
+        call utils#error($"cannot find alternate file")
     endif
 endfunction
 
