@@ -105,7 +105,7 @@ endfunction
 function! utils#altfile()
     silent write
 
-    let l:altfile_tails = {'cpp': ['h', 'hpp'], 'h': ['cpp'], 'hpp': ['cpp']}
+    let l:altfile_tails = {'c': 'h', 'cpp': ['h', 'hpp'], 'h': ['c', 'cpp'], 'hpp': ['cpp']}
 
     try
         let l:alt_tails = l:altfile_tails[pathlib#tail()]
