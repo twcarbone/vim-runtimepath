@@ -172,6 +172,7 @@ command! -range MemberSort <line1>,<line2>call utils#membersort()
 command! KillTrailingWhitespace call utils#kill_trailing_whitespace()
 command! RmAnsiSeq call utils#rmansiseq()
 command! SourceVimrc call utils#sourcevimrc()
+command! Messages call utils#messages()
 
 
 " ========================================================================================

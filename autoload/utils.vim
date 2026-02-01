@@ -288,3 +288,21 @@ function! utils#set_undo_ftplugin(commands)
         let b:undo_ftplugin = a:commands
     endif
 endfunction
+
+" @brief
+"   Display the output of ':messages' in a scratch buffer.
+"
+function! utils#messages()
+    redir => g:_messages
+    silent messages
+    redir END
+
+    new
+    silent put =g:_messages
+    silent global /^\s*$/ normal dd
+    normal G
+
+    setlocal buftype=nofile
+    setlocal bufhidden=delete
+    setlocal noswapfile
+endfunction
