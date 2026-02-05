@@ -167,6 +167,8 @@ command! -bang -nargs=* Rg
     \     <bang>0
     \ )
 
+command! -nargs=? RosMake call <SID>RosMake(<q-args>)
+
 command! -range Disable <line1>,<line2>call utils#disable()
 command! -range Enable <line1>,<line2>call utils#enable()
 command! -range MemberSort <line1>,<line2>call utils#membersort()
@@ -290,6 +292,17 @@ function! s:SetTermWindowMargin(margin)
     execute "set termwinsize=0x" . (winwidth("%") - a:margin)
 endfunction
 
+function! s:RosMake(package)
+    if empty(a:package)
+        silent execute "make! build"
+    else
+        silent execute "make! build ROS_PKG=" .. a:package
+    endif
+
+    silent Cfilter /error: /
+
+    redraw!
+endfunction
 
 function! s:HandleTerminalOpen()
     set nospell
