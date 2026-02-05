@@ -96,6 +96,7 @@ let g:netrw_sort_sequence = '[\/]\s'
 " Builtin
 runtime ftplugin/man.vim
 packadd! matchit
+packadd! cfilter
 
 " Python
 let g:pyindent_open_paren = 'shiftwidth()'
