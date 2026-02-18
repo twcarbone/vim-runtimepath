@@ -412,3 +412,5 @@ augroup __twc_misc
     autocmd!
     autocmd BufReadPost * call <SID>RestoreCursorPosition()
 augroup END
+
+" vim:ft=vim
