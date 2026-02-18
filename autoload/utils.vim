@@ -55,10 +55,12 @@ endfunction
 "   https://github.com/twcarbone/dot_files/issues/5
 "
 function! utils#formatrange() range
+    let l:fname = pathlib#name()
     let l:err = 0
+
     silent write
     if &filetype ==# "c" || &filetype ==# "cpp"
-        silent execute a:firstline ',' a:lastline '!clang-format'
+        silent execute a:firstline ',' a:lastline '!clang-format --assume-filename=' .. l:fname
     elseif &filetype ==# "csv"
         silent execute a:firstline ',' a:lastline '!column -s, -t'
     elseif &filetype ==# "json"
