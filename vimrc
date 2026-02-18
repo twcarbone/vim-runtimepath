@@ -233,17 +233,19 @@ nnoremap <c-s> :w<cr>
 nnoremap <silent> <leader>a         :call utils#altfile()<cr>
 nnoremap          <leader>b         :Buffers<cr>
 nnoremap <silent> <leader>c         :nohlsearch<cr> :.,$s/<c-r><c-w>/<c-r><c-w>/gc<c-f>bbb
-nnoremap <silent> <leader>d         :YcmCompleter GoTo<cr>
  noremap <silent> <leader>e         :nohlsearch<cr>
 nnoremap          <leader>f         :Files<cr>
 nnoremap          <leader>g         :GFiles<cr>
 nnoremap          <leader>i         :Rg<cr>
-nnoremap          <leader>j         :Jumps<cr>
 nnoremap          <leader>l         :BLines<cr>
 nnoremap <silent> <leader>r         :%FormatRange<cr>
 vnoremap <silent> <leader>r         :call utils#formatrange()<cr>
 nnoremap <silent> <leader>s         :SourceVimrc<cr>
 nnoremap <silent> <leader><tab>     :bn<cr>
+
+nnoremap <silent> <leader>jr        :call <SID>YcmCompleterResults('GoToReferences')<cr>
+nnoremap <silent> <leader>jd        :YcmCompleter GoTo<cr>
+nnoremap          <leader>jj        :Jumps<cr>
 
 " Other
     imap <expr>   <cr>              search('\%#[])}]', 'n') ? '<cr><esc>O' : '<cr>'
@@ -292,6 +294,7 @@ function! s:SetTermWindowMargin(margin)
     execute "set termwinsize=0x" . (winwidth("%") - a:margin)
 endfunction
 
+
 function! s:RosMake(package)
     if empty(a:package)
         silent execute "make! build"
@@ -303,6 +306,15 @@ function! s:RosMake(package)
 
     redraw!
 endfunction
+
+
+function! s:YcmCompleterResults(command)
+    " TODO (gh-19): YcmCompleterResults should populate FZF window, not quickfix list
+    silent execute 'YcmCompleter ' .. a:command
+    silent ccl
+    silent cw
+endfunction
+
 
 function! s:HandleTerminalOpen()
     set nospell
