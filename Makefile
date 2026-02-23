@@ -1,12 +1,25 @@
 .PHONY: install ycm thirdparty fzf
 
+THIRDPARTY	= $$HOME/devl/thirdparty
+
 install:
 	rm -rf $$HOME/.vim
 	ln -s $$PWD $$HOME/.vim
 	git submodule update --init --recursive
+	$(MAKE) vim
 	$(MAKE) ycm
 	$(MAKE) fzf
 	$(MAKE) docs
+
+.PHONY: vim
+
+VIM_VERSION	= v9.1.0698
+VIM_CONFIG	= --disable-gui --enable-python3interp --with-python3-command=python3
+
+vim: thirdparty
+	git clone --depth=1 --branch=$(VIM_VERSION) git@github.com:vim/vim.git $(THIRDPARTY)/vim
+	cd $(THIRDPARTY)/vim/src && $(MAKE) distclean && ./configure $(VIM_CONFIG) && $(MAKE) -j
+	cd $(THIRDPARTY)/vim/src && sudo $(MAKE) install
 
 docs:
 	find pack/*/*/*/doc -type d -name doc -exec vim --clean -c "helptags {}" -c "q" \;
