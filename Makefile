@@ -1,7 +1,7 @@
-.PHONY: install ycm thirdparty fzf
-
 THIRDPARTY	= $$HOME/devl/thirdparty
 
+
+.PHONY: install
 install:
 	rm -rf $$HOME/.vim
 	ln -s $$PWD $$HOME/.vim
@@ -11,27 +11,40 @@ install:
 	$(MAKE) fzf
 	$(MAKE) docs
 
+
+.PHONY: thirdparty
+thirdparty:
+	mkdir -p $(THIRDPARTY)
+
+
 .PHONY: vim
 
-VIM_VERSION	= v9.1.0698
-VIM_CONFIG	= --disable-gui --enable-python3interp --with-python3-command=python3
+VIM_VERSION			= v9.1.0698
+VIM_CLONE_FLAGS		= --depth=1 --branch=$(VIM_VERSION) 
+VIM_CONFIG_FLAGS	= --disable-gui --enable-python3interp --with-python3-command=python3
 
 vim: thirdparty
-	git clone --depth=1 --branch=$(VIM_VERSION) git@github.com:vim/vim.git $(THIRDPARTY)/vim
-	cd $(THIRDPARTY)/vim/src && $(MAKE) distclean && ./configure $(VIM_CONFIG) && $(MAKE) -j
+	git clone $(VIM_CLONE_FLAGS) git@github.com:vim/vim.git $(THIRDPARTY)/vim
+	cd $(THIRDPARTY)/vim/src && $(MAKE) distclean && ./configure $(VIM_CONFIG_FLAGS) && $(MAKE) -j
 	cd $(THIRDPARTY)/vim/src && sudo $(MAKE) install
 
+
+.PHONY: docs
 docs:
 	find pack/*/*/*/doc -type d -name doc -exec vim --clean -c "helptags {}" -c "q" \;
 
+
+.PHONY: ycm
 ycm:
 	python3 pack/thirdparty/start/vim-ycm/install.py --clangd-completer
 
-thirdparty:
-	mkdir -p $$HOME/devl/thirdparty
+
+.PHONY: fzf
+
+FZF_INSTALL_FLAGS	= --key-bindings --completion --no-update-rc
 
 fzf: thirdparty
-	rm -rf $$HOME/devl/thirdparty/fzf
-	git clone git@github.com:junegunn/fzf.git $$HOME/devl/thirdparty/fzf
-	$$HOME/devl/thirdparty/fzf/install --key-bindings --completion --no-update-rc
-	ln -s $$HOME/devl/thirdparty/fzf/plugin/fzf.vim plugin/fzf.vim
+	rm -rf $(THIRDPARTY)/fzf
+	git clone git@github.com:junegunn/fzf.git $(THIRDPARTY)/fzf
+	$(THIRDPARTY)/fzf/install $(FZF_INSTALL_FLAGS)
+	ln -s $(THIRDPARTY)/fzf/plugin/fzf.vim plugin/fzf.vim
