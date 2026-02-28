@@ -24,8 +24,9 @@ VIM_CLONE_FLAGS		= --depth=1 --branch=$(VIM_VERSION)
 VIM_CONFIG_FLAGS	= --disable-gui --enable-python3interp --with-python3-command=python3
 
 vim: thirdparty
+	rm -rf $(THIRDPARTY)/vim
 	git clone $(VIM_CLONE_FLAGS) git@github.com:vim/vim.git $(THIRDPARTY)/vim
-	cd $(THIRDPARTY)/vim/src && $(MAKE) distclean && ./configure $(VIM_CONFIG_FLAGS) && $(MAKE) -j
+	cd $(THIRDPARTY)/vim/src && ./configure $(VIM_CONFIG_FLAGS) && $(MAKE)
 	cd $(THIRDPARTY)/vim/src && sudo $(MAKE) install
 
 
@@ -47,4 +48,4 @@ fzf: thirdparty
 	rm -rf $(THIRDPARTY)/fzf
 	git clone git@github.com:junegunn/fzf.git $(THIRDPARTY)/fzf
 	$(THIRDPARTY)/fzf/install $(FZF_INSTALL_FLAGS)
-	ln -s $(THIRDPARTY)/fzf/plugin/fzf.vim plugin/fzf.vim
+	ln -sf $(THIRDPARTY)/fzf/plugin/fzf.vim plugin/fzf.vim
