@@ -35,6 +35,7 @@ set cursorline
 set directory=$HOME/vimswap//
 set display=truncate
 set expandtab
+set exrc
 set foldcolumn=1
 set formatoptions=croqj
 if has('patch-8.2.4907')
@@ -55,6 +56,7 @@ set number
 set pastetoggle=<F2>
 set relativenumber
 set scrolloff=2
+set secure
 set shiftwidth=4
 set showcmd
 set smartcase
