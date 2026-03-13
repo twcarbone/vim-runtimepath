@@ -240,6 +240,7 @@ nnoremap          <leader>f         :Files<cr>
 nnoremap          <leader>g         :GFiles<cr>
 nnoremap          <leader>i         :Rg<cr>
 nnoremap          <leader>l         :BLines<cr>
+nnoremap          <leader>m         :Marks<cr>
 nnoremap <silent> <leader>r         :%FormatRange<cr>
 vnoremap <silent> <leader>r         :call utils#formatrange()<cr>
 nnoremap <silent> <leader>s         :SourceVimrc<cr>
