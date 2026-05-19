@@ -192,7 +192,6 @@ cnoremap <esc><bs> <c-w>
 " Mimic bash <c-r> to show history from command line (: or /)
 cnoremap <silent> <expr> <c-r> <SID>History()
 
-tnoremap <esc> <c-w>N
 tnoremap jk    <c-w>N
 inoremap jk    <esc>
 
