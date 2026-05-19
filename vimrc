@@ -119,6 +119,7 @@ let g:ycm_key_list_select_completion = ['<C-n>']
 let g:ycm_show_detailed_diag_in_popup = 1
 let g:ycm_update_diagnostics_in_insert_mode = 0 " recommended for ycm_echo_current_diagnostic = 'virtual-text'
 let g:ycm_warning_symbol = "W"
+let g:ycm_max_diagnostics_to_display = 500
 
 " vim-closetag
 let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.js,*.jsx,*.ts,*.tsx,*.xml'
