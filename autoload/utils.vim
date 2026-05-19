@@ -301,6 +301,7 @@ function! utils#messages()
 
     new
     silent put =g:_messages
+    unlet g:_messages
     silent global /^\s*$/ normal dd
     normal G
 
