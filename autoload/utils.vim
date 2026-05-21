@@ -68,6 +68,8 @@ function! utils#formatrange() range
     elseif &filetype ==# "python"
         silent execute a:firstline ',' a:lastline '!~/.pytools/bin/black - -q'
         silent execute a:firstline ',' a:lastline '!~/.pytools/bin/isort --force-single-line-imports -'
+    elseif &filetype ==# "vim"
+        silent execute a:firstline ',' a:lastline '!~/devl/vim-format/build/src/vim-format --column-limit 40 -'
     elseif &filetype ==# "xml"
         call setenv("XMLLINT_INDENT", "    ")
         silent execute a:firstline ',' a:lastline '!xmllint --format -'
@@ -306,6 +308,15 @@ function! utils#messages()
     normal G
 
     setlocal buftype=nofile
+    setlocal bufhidden=delete
+    setlocal noswapfile
+endfunction
+
+function! utils#tips()
+    execute "split " .. pathlib#join(pathlib#runtimepath(), "tips.txt")
+
+    setlocal readonly
+    setlocal buftype=nowrite
     setlocal bufhidden=delete
     setlocal noswapfile
 endfunction

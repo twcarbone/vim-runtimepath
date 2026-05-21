@@ -1,0 +1,10 @@
+==============================================================================
+1. Miscellaneous
+
+g Ctrl-g        Prints the current position of the cursor in five ways.
+                :h byte-count
+
+ga              Print the ascii value of the character under the cursor.
+                :h ascii
+
+ vim:tw=78:ft=help
