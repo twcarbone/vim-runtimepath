@@ -179,6 +179,7 @@ command! KillTrailingWhitespace call utils#kill_trailing_whitespace()
 command! RmAnsiSeq call utils#rmansiseq()
 command! SourceVimrc call utils#sourcevimrc()
 command! Messages call utils#messages()
+command! Tips call utils#tips()
 
 
 " ========================================================================================

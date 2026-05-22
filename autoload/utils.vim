@@ -309,3 +309,29 @@ function! utils#messages()
     setlocal bufhidden=delete
     setlocal noswapfile
 endfunction
+
+
+" @brief
+"   Open a 'tips.txt' file in read-only mode.
+"
+function! utils#tips()
+    let l:path = pathlib#join(pathlib#runtimepath(), "tips.txt")
+
+    if !pathlib#exists(l:path)
+        call utils#error($"no such file: {l:path}")
+        return
+    endif
+
+    let l:winnr = bufwinnr(l:path)
+
+    if l:winnr == -1
+        execute "split " .. l:path
+
+        setlocal readonly
+        setlocal buftype=nowrite
+        setlocal bufhidden=delete
+        setlocal noswapfile
+    else
+        execute l:winnr .. "wincmd w"
+    endif
+endfunction
