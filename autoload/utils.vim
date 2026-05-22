@@ -291,6 +291,7 @@ function! utils#set_undo_ftplugin(commands)
     endif
 endfunction
 
+
 " @brief
 "   Display the output of ':messages' in a scratch buffer.
 "
