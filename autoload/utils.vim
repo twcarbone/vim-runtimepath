@@ -326,7 +326,7 @@ function! utils#tips()
     let l:winnr = bufwinnr(l:path)
 
     if l:winnr == -1
-        execute "split " .. l:path
+        execute "noswapfile split " .. l:path
 
         setlocal readonly
         setlocal buftype=nowrite
