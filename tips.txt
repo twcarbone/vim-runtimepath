@@ -9,4 +9,11 @@ To print the current ascii value under the cursor:
     :as[cii]    or
     ga
 
+
+To paste from a buffer into a terminal buffer:
+
+    1.  Yank text from normal buffer
+    2.  Enter terminal-job mode with `i` or `a`
+    3.  Paste using `Ctrl-W " "`
+
  vim:tw=78:ft=help:nospell
