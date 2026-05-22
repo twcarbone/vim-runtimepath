@@ -1,13 +1,13 @@
                                         *g_CTRL-G* *word-count* *byte-count*
 To print the current position of the cursor:
 
-    g Ctrl-g
+    `g Ctrl-g`
 
                                         *ga* *:as* *:ascii*
 To print the current ascii value under the cursor:
 
-    :as[cii]    or
-    ga
+    `:as[cii]`    or
+    `ga`
 
 
 To paste from a buffer into a terminal buffer:
