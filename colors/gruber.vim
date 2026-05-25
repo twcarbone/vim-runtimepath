@@ -105,7 +105,7 @@ call s:hl("SpecialComment", s:merge(s:comment, s:info))
 call s:hl("Underlined",     { "style": "underline" })
 call s:hl("Ignore",         { "fg": s:black })
 call s:hl("Error",          { "fg": s:red })
-call s:hl("Todo",           s:merge(s:comment, s:info))
+call s:hl("Todo",           { "fg": s:brown, "style": "underline" })
 
 " Line numbers
 call s:hl("LineNr",         { "fg": s:gray })
