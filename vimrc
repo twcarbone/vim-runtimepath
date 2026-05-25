@@ -135,6 +135,10 @@ let g:fzf_layout = { 'down': '50%' }
 
 " vim-gitgutter
 
+let g:gitgutter_sign_priority = 1  " g:gitgutter_sign_allow_clobber = 0 does not reliably ensure
+                                   " YouCompleteMe diagnostics are not clobbered. Set priority
+                                   " low as workaround.
+
 " vim-pydoc
 let g:pydoc_cmd = 'python3 -m pydoc'
 let g:pydoc_highlight = 0
