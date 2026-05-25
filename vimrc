@@ -32,6 +32,7 @@ set cinoptions+=g0
 set cmdwinheight=12
 set colorcolumn=100
 set cursorline
+set cursorlineopt=number
 set directory=$HOME/vimswap//
 set display=truncate
 set expandtab
