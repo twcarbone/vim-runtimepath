@@ -244,6 +244,19 @@ function! utils#membersort() range
 endfunction
 
 
+function! utils#queryreplace(regexp) range
+    if a:regexp == ""
+        let regexp = input('Search pattern: ')
+    else
+        let regexp = a:regexp
+    endif
+
+    let replace = input("Replace '" .. regexp .. "' with: ")
+
+    execute $'{a:firstline},{a:lastline}s/{regexp}/{replace}/g'
+endfunction
+
+
 " @brief
 "
 " @notes
