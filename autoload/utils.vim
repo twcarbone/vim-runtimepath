@@ -253,7 +253,14 @@ function! utils#queryreplace(regexp) range
 
     let replace = input("Replace '" .. regexp .. "' with: ")
 
-    execute $'{a:firstline},{a:lastline}s/{regexp}/{replace}/g'
+    try
+        execute $'{a:firstline},{a:lastline}s/{regexp}/{replace}/g'
+    catch /Pattern not found/
+        redraw
+        echohl ErrorMsg
+        echo "Pattern '" .. regexp .. "' not found"
+        echohl None
+    endtry
 endfunction
 
 
