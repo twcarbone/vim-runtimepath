@@ -254,6 +254,12 @@ function! utils#queryreplace(regexp) range
         let regexp = a:regexp
     endif
 
+    if regexp == ""
+        redraw
+        call utils#error('Search pattern or register name cannot be empty')
+        return
+    endif
+
     if utils#isregname(regexp)
         let register_contents = getreg(regexp)
         if register_contents == ""
