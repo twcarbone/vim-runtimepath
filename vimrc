@@ -242,13 +242,13 @@ nnoremap <c-s> :w<cr>
  noremap          <leader>9         9gt
 nnoremap <silent> <leader>a         :call utils#altfile()<cr>
 nnoremap          <leader>b         :Buffers<cr>
-nnoremap <silent> <leader>c         :nohlsearch<cr> :.,$s/<c-r><c-w>/<c-r><c-w>/gc<c-f>bbb
  noremap <silent> <leader>e         :nohlsearch<cr>
 nnoremap          <leader>f         :Files<cr>
 nnoremap          <leader>g         :GFiles<cr>
 nnoremap          <leader>i         :Rg<cr>
 nnoremap          <leader>l         :BLines<cr>
 nnoremap          <leader>m         :Marks<cr>
+nnoremap          <leader>q         :noh<cr> :execute '.,$QueryReplace ' .. expand('<cword>')<cr>
 nnoremap <silent> <leader>r         :%FormatRange<cr>
 vnoremap <silent> <leader>r         :call utils#formatrange()<cr>
 nnoremap <silent> <leader>s         :SourceVimrc<cr>
