@@ -28,6 +28,9 @@ function! utils#editifexists(path)
     endif
 endfunction
 
+function! utils#isregname(regname)
+    return len(a:regname) == 1 && a:regname =~# '^["0-9\-a-zA-Z:.%#=*+~_/]$'
+endfunction
 
 " @brief
 "   Source vimrc file
@@ -246,9 +249,19 @@ endfunction
 
 function! utils#queryreplace(regexp) range
     if a:regexp == ""
-        let regexp = input('Search pattern: ')
+        let regexp = input('Search pattern or register name: ')
     else
         let regexp = a:regexp
+    endif
+
+    if utils#isregname(regexp)
+        let register_contents = getreg(regexp)
+        if register_contents == ""
+            call utils#error($'Register {regexp} is empty')
+            return
+        else
+            let regexp = register_contents
+        endif
     endif
 
     let replace = input("Replace '" .. regexp .. "' with: ")
@@ -257,9 +270,7 @@ function! utils#queryreplace(regexp) range
         execute $'{a:firstline},{a:lastline}s/{regexp}/{replace}/g'
     catch /Pattern not found/
         redraw
-        echohl ErrorMsg
-        echo "Pattern '" .. regexp .. "' not found"
-        echohl None
+        call utils#error("Pattern '" .. regexp .. "' not found")
     endtry
 endfunction
 
