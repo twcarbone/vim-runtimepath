@@ -70,7 +70,7 @@ function! utils#formatrange() range
         silent execute a:firstline ',' a:lastline '!jq --indent 4 .'
     elseif &filetype ==# "python"
         silent execute a:firstline ',' a:lastline '!~/.pytools/bin/black - -q'
-        silent execute a:firstline ',' a:lastline '!~/.pytools/bin/isort --force-single-line-imports -'
+        silent execute a:firstline ',' a:lastline '!~/.pytools/bin/isort -'
     elseif &filetype ==# "xml"
         call setenv("XMLLINT_INDENT", "    ")
         silent execute a:firstline ',' a:lastline '!xmllint --format -'
