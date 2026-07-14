@@ -176,12 +176,16 @@ command! -bang -nargs=* Rg
     \     <bang>0
     \ )
 
+command! -nargs=? -range=% QueryReplace
+    \ let s:view = winsaveview() |
+    \ <line1>,<line2>call utils#queryreplace(<q-args>) |
+    \ call winrestview(s:view)
+
 command! -nargs=? RosMake call <SID>RosMake(<q-args>)
 
 command! -range Disable <line1>,<line2>call utils#disable()
 command! -range Enable <line1>,<line2>call utils#enable()
 command! -range MemberSort <line1>,<line2>call utils#membersort()
-command! -nargs=? -range=% QueryReplace <line1>,<line2>call utils#queryreplace(<q-args>)
 command! KillTrailingWhitespace call utils#kill_trailing_whitespace()
 command! RmAnsiSeq call utils#rmansiseq()
 command! SourceVimrc call utils#sourcevimrc()
