@@ -52,6 +52,7 @@ set linebreak
 set list
 set listchars=trail:∙,tab:→\∙
 set makeprg=make\ -j
+set nofixendofline
 set nojoinspaces
 set number
 set pastetoggle=<F2>
