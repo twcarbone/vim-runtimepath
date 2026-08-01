@@ -4,4 +4,6 @@
 "   :make <file>    Runs mypy on <file>
 setlocal makeprg=$HOME/.pytools/bin/mypy\ $*
 
-call utils#set_undo_ftplugin('setlocal mp<')
+setlocal colorcolumn=100,120
+
+call utils#set_undo_ftplugin('setlocal mp< cc<')
