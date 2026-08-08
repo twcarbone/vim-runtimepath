@@ -121,16 +121,22 @@ function! utils#altfile()
 
     let l:gitdir = pathlib#fd_u(".git", pathlib#parent())
 
-    for l:alt_tail in l:alt_tails
-        let l:alt_name = pathlib#name(pathlib#with_tail(l:alt_tail))
+    if l:gitdir == ""
+        call utils#error("Must be in project with .git directory")
+        return
+    else
+        let l:project_root = pathlib#parent(l:gitdir)
+    endif
 
-        if l:gitdir != ""
-            let l:file = pathlib#ff_d(l:alt_name, pathlib#parent(l:gitdir), 10)
-        else
-            let l:file = pathlib#ff(l:alt_name, pathlib#parent())
-        endif
-
-        if l:file != ''
+    for l:searchdir in pathlib#parents()
+        for l:alt_tail in l:alt_tails
+            let l:alt_name = pathlib#name(pathlib#with_tail(l:alt_tail))
+            let l:file = pathlib#ff_d(l:alt_name, l:searchdir, 10)
+            if l:file != ""
+                break
+            endif
+        endfor
+        if l:searchdir == l:project_root || l:file != ""
             break
         endif
     endfor
