@@ -252,6 +252,19 @@ function! utils#membersort() range
     call utils#sortbuflines(a:firstline, a:lastline, "utils#membercompare")
 endfunction
 
+function! utils#rg(pattern)
+    if a:pattern == ""
+        let pattern = getreg()
+    else
+        let pattern = a:pattern
+    endif
+
+    " Do not match filenames (https://stackoverflow.com/a/62745519)
+    let cmd = "rg -n --no-heading --color=always -S -- " .. fzf#shellescape(pattern)
+    let options = {'options': '--delimiter=: --nth=3..'}
+    call fzf#vim#grep(cmd, fzf#vim#with_preview(options))
+endfunction
+
 
 function! utils#queryreplace(regexp) range
     if a:regexp == ""

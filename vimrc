@@ -166,16 +166,8 @@ command! -range -bar FormatRange
     \ <line1>,<line2>call utils#formatrange() |
     \ call winrestview({'lnum': s:view.lnum, 'col': s:view.col, 'topline': s:view.topline})
 
-" :Rg
-"           Alternate vim-fzf :Rg command to not match filenames.
-"
-"           (inspired by: https://stackoverflow.com/a/62745519)
-command! -bang -nargs=* Rg
-    \ call fzf#vim#grep(
-    \     "rg --line-number --no-heading --color=always --smart-case -- " .. fzf#shellescape(<q-args>),
-    \     fzf#vim#with_preview({'options': '--delimiter=: --nth=3..'}),
-    \     <bang>0
-    \ )
+" :Rg [pattern]
+command! -nargs=? Rg call utils#rg(<q-args>)
 
 command! -nargs=? -range=% QueryReplace
     \ let s:view = winsaveview() |
@@ -183,7 +175,6 @@ command! -nargs=? -range=% QueryReplace
     \ call winrestview(s:view)
 
 command! -nargs=? RosMake call <SID>RosMake(<q-args>)
-
 command! -range Disable <line1>,<line2>call utils#disable()
 command! -range Enable <line1>,<line2>call utils#enable()
 command! -range MemberSort <line1>,<line2>call utils#membersort()
