@@ -266,36 +266,20 @@ function! utils#rg(pattern)
 endfunction
 
 
-function! utils#queryreplace(regexp) range
-    if a:regexp == ""
-        let regexp = input('Search pattern or register name: ')
+function! utils#queryreplace(pattern) range
+    if a:pattern == ""
+        let pattern = getreg()
     else
-        let regexp = a:regexp
+        let pattern = a:pattern
     endif
 
-    if regexp == ""
-        redraw
-        call utils#error('Search pattern or register name cannot be empty')
-        return
-    endif
-
-    if utils#isregname(regexp)
-        let register_contents = getreg(regexp)
-        if register_contents == ""
-            call utils#error($'Register {regexp} is empty')
-            return
-        else
-            let regexp = register_contents
-        endif
-    endif
-
-    let replace = input("Replace '" .. regexp .. "' with: ")
+    let replace = input("Replace '" .. pattern .. "' with: ")
 
     try
-        execute $'{a:firstline},{a:lastline}s/{regexp}/{replace}/gc'
+        execute $'{a:firstline},{a:lastline}s/{pattern}/{replace}/gc'
     catch /Pattern not found/
         redraw
-        call utils#error("Pattern '" .. regexp .. "' not found")
+        call utils#error("Pattern '" .. pattern .. "' not found")
     endtry
 endfunction
 
