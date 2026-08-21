@@ -259,10 +259,18 @@ function! utils#rg(pattern)
         let pattern = a:pattern
     endif
 
-    " Do not match filenames (https://stackoverflow.com/a/62745519)
-    let cmd = "rg -n --no-heading --color=always -S -- " .. fzf#shellescape(pattern)
-    let options = {'options': '--delimiter=: --nth=3..'}
-    call fzf#vim#grep(cmd, fzf#vim#with_preview(options))
+    " Escape rg regex special characters
+    let pattern = escape(pattern, '.*+?()[]{}|^$')
+
+    let rg_options = '--line-number'
+    let rg_options ..= ' --no-heading'
+    let rg_options ..= ' --color=always'
+    let rg_options ..= ' --smart-case'
+    let rg_cmd = 'rg ' .. rg_options .. ' -- ' .. fzf#shellescape(pattern)
+
+    let fzf_options = {'options': '--delimiter=: --nth=3..'}
+
+    call fzf#vim#grep(rg_cmd, fzf#vim#with_preview(fzf_options))
 endfunction
 
 
