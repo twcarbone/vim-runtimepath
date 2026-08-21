@@ -254,13 +254,11 @@ endfunction
 
 function! utils#rg(pattern)
     if a:pattern == ""
-        let pattern = getreg()
+        let pattern = escape(getreg(), '.*+?()[]{}|^$')
     else
+        " Assume the user has already escaped what they wanted to.
         let pattern = a:pattern
     endif
-
-    " Escape rg regex special characters
-    let pattern = escape(pattern, '.*+?()[]{}|^$')
 
     let rg_options = '--line-number'
     let rg_options ..= ' --no-heading'
