@@ -28,9 +28,11 @@ function! utils#editifexists(path)
     endif
 endfunction
 
+
 function! utils#isregname(regname)
     return len(a:regname) == 1 && a:regname =~# '^["0-9\-a-zA-Z:.%#=*+~_/]$'
 endfunction
+
 
 " @brief
 "   Source vimrc file
@@ -251,6 +253,7 @@ endfunction
 function! utils#membersort() range
     call utils#sortbuflines(a:firstline, a:lastline, "utils#membercompare")
 endfunction
+
 
 function! utils#rg(pattern)
     if a:pattern == ""
