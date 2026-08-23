@@ -16,4 +16,33 @@ To paste from a buffer into a terminal buffer:
     2.  Enter terminal-job mode with `i` or `a`
     3.  Paste using `Ctrl-W " "`
 
+
+vim-fugitive
+
+    :G[it]
+
+        Navigation
+
+            ),(     Next/previous file
+            ]c,[c   Next/previous file or hunk, expanding diffs
+
+        Staging
+
+            X       Discard hunk or file; remove untracked file
+            s,u     Stage/unstage on file/hunk
+            -       Toggle hunk or file staging
+            U       Unstage everything
+            =       Toggle inline diff of file
+
+        Committing
+
+            cvc     commit --verbose
+            cva     commit --amend --verbose
+
+
+    :Git blame
+
+        C,A,D   Resive blame window to commit, author, date
+        p       Show patch in preview window
+
  vim:tw=78:ft=help:nospell
