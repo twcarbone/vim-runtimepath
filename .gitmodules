@@ -31,3 +31,6 @@
 [submodule "pack/thirdparty/start/vim-indent-object"]
 	path = pack/thirdparty/start/vim-indent-object
 	url = git@github.com:michaeljsmith/vim-indent-object.git
+[submodule "pack/thirdparty/start/vim-fugitive"]
+	path = pack/thirdparty/start/vim-fugitive
+	url = https://github.com/tpope/vim-fugitive.git
