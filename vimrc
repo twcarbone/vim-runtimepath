@@ -238,6 +238,7 @@ nnoremap <c-s> :w<cr>
  noremap          <leader>9         9gt
 nnoremap <silent> <leader>a         :call utils#altfile()<cr>
 nnoremap          <leader>b         :Buffers<cr>
+nnoremap          <leader>c         :Commits<cr>
  noremap <silent> <leader>e         :nohlsearch<cr>
 nnoremap          <leader>f         :Files<cr>
 nnoremap          <leader>g         :GFiles<cr>
