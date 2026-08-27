@@ -34,6 +34,14 @@ function! utils#isregname(regname)
 endfunction
 
 
+function! utils#filetype_any_of(choices)
+    if index(a:choices, &filetype) >= 0
+        return 1
+    endif
+    return 0
+endfunction
+
+
 " @brief
 "   Source vimrc file
 "
@@ -64,19 +72,19 @@ function! utils#formatrange() range
     let l:err = 0
 
     silent write
-    if &filetype ==# "c" || &filetype ==# "cpp"
+    if utils#filetype_any_of(["c", "cpp"])
         silent execute a:firstline ',' a:lastline '!clang-format --assume-filename=' .. l:fname
-    elseif &filetype ==# "csv"
+    elseif utils#filetype_any_of(["csv"])
         silent execute a:firstline ',' a:lastline '!column -s, -t'
-    elseif &filetype ==# "json"
+    elseif utils#filetype_any_of(["json"])
         silent execute a:firstline ',' a:lastline '!jq --indent 4 .'
-    elseif &filetype ==# "python"
+    elseif utils#filetype_any_of(["python"])
         silent execute a:firstline ',' a:lastline '!~/.pytools/bin/black - -q'
         silent execute a:firstline ',' a:lastline '!~/.pytools/bin/isort -'
-    elseif &filetype ==# "xml"
+    elseif utils#filetype_any_of(["xml"])
         call setenv("XMLLINT_INDENT", "    ")
         silent execute a:firstline ',' a:lastline '!xmllint --format -'
-    elseif &filetype ==# "html"
+    elseif utils#filetype_any_of(["html"])
         silent execute a:firstline ',' a:lastline '!tidy -q'
 
         if v:shell_error != 0
