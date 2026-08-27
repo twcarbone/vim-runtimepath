@@ -70,22 +70,23 @@ endfunction
 function! utils#formatrange() range
     let l:fname = pathlib#name()
     let l:err = 0
+    let l:range = a:firstline .. ',' .. a:lastline
 
     silent write
     if utils#filetype_any_of(["c", "cpp"])
-        silent execute a:firstline ',' a:lastline '!clang-format --assume-filename=' .. l:fname
+        silent execute l:range '!clang-format --assume-filename=' .. l:fname
     elseif utils#filetype_any_of(["csv"])
-        silent execute a:firstline ',' a:lastline '!column -s, -t'
+        silent execute l:range '!column -s, -t'
     elseif utils#filetype_any_of(["json"])
-        silent execute a:firstline ',' a:lastline '!jq --indent 4 .'
+        silent execute l:range '!jq --indent 4 .'
     elseif utils#filetype_any_of(["python"])
-        silent execute a:firstline ',' a:lastline '!~/.pytools/bin/black - -q'
-        silent execute a:firstline ',' a:lastline '!~/.pytools/bin/isort -'
+        silent execute l:range '!~/.pytools/bin/black - -q'
+        silent execute l:range '!~/.pytools/bin/isort -'
     elseif utils#filetype_any_of(["xml"])
         call setenv("XMLLINT_INDENT", "    ")
-        silent execute a:firstline ',' a:lastline '!xmllint --format -'
+        silent execute l:range '!xmllint --format -'
     elseif utils#filetype_any_of(["html"])
-        silent execute a:firstline ',' a:lastline '!tidy -q'
+        silent execute l:range '!tidy -q'
 
         if v:shell_error != 0
             let l:err = 1
