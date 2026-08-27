@@ -164,7 +164,7 @@ endfunction
 "   Enclose a range with `#if 0` and `#endif`
 "
 function! utils#disable() range
-    if index(["c", "cpp", "h"], expand("%:e")) == -1
+    if !utils#filetype_any_of(["c", "cpp"])
         call utils#error("Must be c file")
         return
     endif
@@ -183,7 +183,7 @@ endfunction
 "   Range must start and end on `#if 0` and `#endif`, respectively.
 "
 function! utils#enable() range
-    if index(["c", "cpp", "h"], expand("%:e")) == -1
+    if !utils#filetype_any_of(["c", "cpp"])
         call utils#error("Must be c file")
         return
     elseif getline(a:firstline) != "#if 0"
