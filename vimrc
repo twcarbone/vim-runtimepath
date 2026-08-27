@@ -246,7 +246,7 @@ nnoremap          <leader>g         :GFiles<cr>
 nnoremap          <leader>i         :Rg<cr>
 nnoremap          <leader>l         :BLines<cr>
 nnoremap          <leader>m         :Marks<cr>
-nnoremap          <leader>q         :noh<cr> :execute '.,$QueryReplace ' .. expand('<cword>')<cr>
+nnoremap          <leader>q         :QueryReplace <c-r>"<c-f>
 nnoremap <silent> <leader>r         :%FormatRange<cr>
 vnoremap <silent> <leader>r         :call utils#formatrange()<cr>
 nnoremap <silent> <leader>s         :SourceVimrc<cr>
