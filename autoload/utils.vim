@@ -316,25 +316,6 @@ endfunction
 
 
 " @brief
-"
-" @notes
-"   Credit to: https://stackoverflow.com/a/6271254
-
-function! utils#interactivechangeword()
-    let [l:nLineStart, l:nColStart] = getpos("'<")[1:2]
-    let [l:nLineEnd, l:nColEnd] = getpos("'>")[1:2]
-    if l:nLineStart != l:nLineEnd
-        call utils#error("cannot process multiline selection")
-    endif
-endfunction
-
-
-function! utils#incrementnumbers() range
-"'<,'>s/\%V\d\+\%V/\=submatch(0)+1/g
-endfunction
-
-
-" @brief
 "   Remove ANSI escape sequences
 "
 function! utils#rmansiseq()
