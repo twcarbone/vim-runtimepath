@@ -55,7 +55,7 @@ Netrw
 
 vim-fugitive
 
-    :G[it]
+    `:G[it]`
 
         Navigation
 
@@ -76,7 +76,7 @@ vim-fugitive
             cva     commit --amend --verbose
 
 
-    :Git blame
+    `:Git blame`
 
         C,A,D   Resive blame window to commit, author, date
         p       Show patch in preview window
