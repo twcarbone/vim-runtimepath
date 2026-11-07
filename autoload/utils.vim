@@ -80,7 +80,20 @@ function! utils#formatrange() range
     elseif utils#filetype_any_of(["json"])
         silent execute l:range '!jq --indent 4 .'
     elseif utils#filetype_any_of(["python"])
-        silent execute l:range '!~/.pytools/bin/black - -q'
+        " First check to see if the python file can be parsed.
+        let l:lines = getline(a:firstline, a:lastline)
+        let l:errors = systemlist( '~/.pytools/bin/black -q --check -', l:lines)
+        if v:shell_error == 123
+            echohl ErrorMsg
+            for l:error in l:errors
+                echom l:error
+            endfor
+            echohl NONE
+            return
+        endif
+
+        " We already know it can be parsed, so skip the AST safety check.
+        silent execute l:range '!~/.pytools/bin/black -q --fast -'
         silent execute l:range '!~/.pytools/bin/isort -'
     elseif utils#filetype_any_of(["xml"])
         call setenv("XMLLINT_INDENT", "    ")
