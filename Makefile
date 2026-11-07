@@ -22,12 +22,13 @@ thirdparty:
 VIM_VERSION         = v9.1.0698
 VIM_CLONE_FLAGS     = --depth=1 --branch=$(VIM_VERSION)
 VIM_CONFIG_FLAGS    = --disable-gui --enable-python3interp --with-python3-command=python3 \
+                      --prefix=$$HOME/.local
 
 vim: thirdparty
 	rm -rf $(THIRDPARTY)/vim
 	git clone $(VIM_CLONE_FLAGS) git@github.com:vim/vim.git $(THIRDPARTY)/vim
 	cd $(THIRDPARTY)/vim/src && ./configure $(VIM_CONFIG_FLAGS) && $(MAKE)
-	cd $(THIRDPARTY)/vim/src && sudo $(MAKE) install
+	cd $(THIRDPARTY)/vim/src && $(MAKE) install
 
 
 .PHONY: docs
