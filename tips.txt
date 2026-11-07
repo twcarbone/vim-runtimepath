@@ -16,6 +16,42 @@ To paste from a buffer into a terminal buffer:
     2.  Enter terminal-job mode with `i` or `a`
     3.  Paste using `Ctrl-W " "`
 
+Multi-repeat
+
+    `:global /pattern/` starts at first column of each matching line
+
+
+Edit contents of macro in register `m`
+
+    1.  Go to blank line and paste macro using `"mp`
+    2.  Edit the text
+    3.  Yank text back into register using `"myy`
+
+
+Insert special keys:
+
+    `ctrl-r =`      Expression register
+
+
+Motions
+
+    `[m`        Start previous member-function
+    `]m`        Start next member-function
+    `[[`        Previous section, or prevoius '{' in first column
+
+Netrw
+
+    `bash:`       `netrw:`
+
+    mkdir       d
+    rm          D
+    mv          R
+    touch       %
+
+    `other:`
+
+    p   Preview file
+
 
 vim-fugitive
 
