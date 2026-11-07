@@ -1,4 +1,4 @@
-THIRDPARTY	= $$HOME/devl/thirdparty
+THIRDPARTY  = $$HOME/devl/thirdparty
 
 
 .PHONY: install
@@ -19,9 +19,9 @@ thirdparty:
 
 .PHONY: vim
 
-VIM_VERSION			= v9.1.0698
-VIM_CLONE_FLAGS		= --depth=1 --branch=$(VIM_VERSION) 
-VIM_CONFIG_FLAGS	= --disable-gui --enable-python3interp --with-python3-command=python3
+VIM_VERSION         = v9.1.0698
+VIM_CLONE_FLAGS     = --depth=1 --branch=$(VIM_VERSION)
+VIM_CONFIG_FLAGS    = --disable-gui --enable-python3interp --with-python3-command=python3 \
 
 vim: thirdparty
 	rm -rf $(THIRDPARTY)/vim
