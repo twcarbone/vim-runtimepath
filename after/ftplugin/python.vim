@@ -6,11 +6,8 @@ setlocal makeprg=$HOME/.pytools/bin/mypy\ $*
 
 function! <SID>PythonGoToLocalDecl(word)
     if len(a:word) == 0
-        echohl ErrorMSg
-        " This throws 'E349' when 'gd' is used normally.
-        echo "error: no identifier under cursor"
-        echohl NONE
-        return
+        " Let normal 'gd' take over to show the error.
+        return feedkeys("gd", "n")
     endif
 
     if search('^\(def\|async def\)', 'Wb') == 0
