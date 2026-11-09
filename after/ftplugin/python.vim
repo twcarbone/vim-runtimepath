@@ -5,14 +5,10 @@
 setlocal makeprg=$HOME/.pytools/bin/mypy\ $*
 
 function! <SID>PythonGoToLocalDecl(word)
-    if len(a:word) == 0
-        " Let normal 'gd' take over to show the error.
+    if len(a:word) == 0 || search('^\(def\|async def\)', 'Wb') == 0
+        " If not on an identifier or not inside a function, normal 'gd' gives the
+        " behavior we want.
         return feedkeys("gd", "n")
-    endif
-
-    if search('^\(def\|async def\)', 'Wb') == 0
-        " Not inside function definition. Behave like 'gD'.
-        return feedkeys("gD", "n")
     endif
 
     let @/ = $'\V\<{a:word}\>'
