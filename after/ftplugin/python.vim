@@ -6,9 +6,9 @@ setlocal makeprg=$HOME/.pytools/bin/mypy\ $*
 
 function! <SID>PythonGoToLocalDecl(word)
     if len(a:word) == 0 || search('^\(def\|async def\)', 'Wb') == 0
-        " If not on an identifier or not inside a function, normal 'gd' gives the
-        " behavior we want.
-        return feedkeys("gd", "n")
+        " If not on an identifier or not inside a function, falling back to normal
+        " 'gd' gives the behavior we want.
+        return feedkeys('gd', 'n')
     endif
 
     let @/ = $'\V\<{a:word}\>'
@@ -18,9 +18,10 @@ function! <SID>PythonGoToLocalDecl(word)
         normal! n
     endwhile
 
-    " After many attempts, using let @/ = '...' and returning this feedkeys(...)
-    " expression is the only way to get the highlighting behavior to match regular 'gd'.
-    return feedkeys(":let v:hlsearch = 1\<cr>", "n")
+    " Turn on search highlighting if it is enabled, then redraw so the :let command
+    " doesn't linger in the command line. Causes small command-line flicker.
+    call feedkeys(":let v:hlsearch = 1\<cr>", "n")
+    call feedkeys(":redraw!\<cr>", "n")
 endfunction
 
 nnoremap <silent> <buffer> gd :call <SID>PythonGoToLocalDecl(expand('<cword>'))<cr>
