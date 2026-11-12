@@ -277,6 +277,21 @@ function! utils#membersort() range
 endfunction
 
 
+function! utils#blines(pattern)
+    if a:pattern == ""
+        let pattern = getreg()
+    else
+        let pattern = a:pattern
+    endif
+
+    call fzf#vim#buffer_lines()
+
+    " Use feedkeys to act as if the pattern was typed into the filter prompt. Also prefix
+    " the pattern with a single quote to get exact pattern matching.
+    call feedkeys("'" .. pattern, 'n')
+endfunction
+
+
 function! utils#rg(pattern)
     if a:pattern == ""
         let pattern = escape(getreg(), '.*+?()[]{}|^$')

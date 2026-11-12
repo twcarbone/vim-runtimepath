@@ -167,6 +167,9 @@ command! -range -bar FormatRange
     \ <line1>,<line2>call utils#formatrange() |
     \ call winrestview({'lnum': s:view.lnum, 'col': s:view.col, 'topline': s:view.topline})
 
+" :Bl [pattern]
+command! -nargs=? Bl call utils#blines(<q-args>)
+
 " :Rg [pattern]
 command! -nargs=? Rg call utils#rg(<q-args>)
 
@@ -244,7 +247,7 @@ nnoremap <silent> <leader>c         :nohlsearch<cr> :.,$s/<c-r>"/<c-r>"/gc<c-f>b
 nnoremap          <leader>f         :Files<cr>
 nnoremap          <leader>g         :GFiles<cr>
 nnoremap          <leader>i         :Rg<cr>
-nnoremap          <leader>l         :BLines<cr>
+nnoremap          <leader>l         :Bl<cr>
 nnoremap          <leader>m         :Marks<cr>
 nnoremap          <leader>q         :QueryReplace <c-r>"<c-f>
 nnoremap <silent> <leader>r         :%FormatRange<cr>
