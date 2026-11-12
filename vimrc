@@ -259,7 +259,6 @@ nnoremap          <leader>jj        :Jumps<cr>
 " Other
     imap <expr>   <cr>              search('\%#[])}]', 'n') ? '<cr><esc>O' : '<cr>'
 inoremap          <tab>             <plug>(zz-snap)
-nnoremap <expr>   *                 ':%s/'.expand('<cword>').'//gn<CR>'
 nnoremap <silent> -                 :call pathlib#edit(pathlib#parent())<cr>
 
 
